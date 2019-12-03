@@ -1,27 +1,30 @@
 import java.util.*;
 
-public class Main {
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-	public static void main(String[] args) {
-		while(true){
-			Scanner s=new Scanner(System.in);
-			int choose1=0; //°O¿ı²Ä¤@­Ó¿ï¾Ü
-			record user=new record(); //¥Î¨Ó­p¿ı¨Ï¥ÎªÌ¿ï¶µªºÃş§O
-			
-			System.out.println(question.WhatDo); //²Ä¤@­Ó°İÃD
-			System.out.println(question.WhatDoSelect); //Åã¥Ü¿ï¶µ
-			choose1=s.nextInt();
-		
-			while(user.setWhatDo(choose1)==false){ //ÀËµø¨Ï¥ÎªÌ¿é¤Jªº¼Æ¦r
-				System.out.println("¿é¤J¦³»~¡A½Ğ­«·s¿é¤J");
-				System.out.println(question.WhatDoSelect);
-				choose1=s.nextInt();
-			}
-		
-			user.show();
-		
-		}
-		
+class frame extends JFrame{
+	//è¦–çª—ç‰©ä»¶
+	private JPanel p;
+	private JButton btnMove;
+	
+	public frame(String name) {
+		//è¦–çª—çš„å»ºæ§‹
+		super(name);
+		this.setSize(300, 300);
+		//è¨­å®šè¦–çª—çš„é•·è·Ÿå¯›
+		this.setLocation(200, 100);
+		//è¦–çª—çš„å‡ºç¾ä½ç½® x y
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
 	}
-
 }
+
+public class Main extends JFrame{
+	public static void main(String[] args) {
+		frame myf=new frame("hello");
+	}
+		
+}
+
