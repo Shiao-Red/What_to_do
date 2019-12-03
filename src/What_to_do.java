@@ -1,5 +1,3 @@
-package What_to_do;
-
 class question {
 	public final static String WhatDo="你想做什麼 ?"; 
 	public final static String WhatFood="你想吃什麼?";

@@ -1,4 +1,3 @@
-package What_to_do;
 
 class record{
 	private int WhatDo; //用來記錄使用者想要做什麼 1=食物 2=衣服 3=娛樂
