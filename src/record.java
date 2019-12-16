@@ -1,4 +1,3 @@
-
 class record{
 	private int WhatDo; //用來記錄使用者想要做什麼 1=食物 2=衣服 3=娛樂
 	private String thing; //記錄使用者選的東西 可以是食物、衣服、娛樂
