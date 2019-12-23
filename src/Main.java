@@ -15,7 +15,6 @@ public class Main extends JFrame{
 	
 	public Main() {
 		super("今天要做什麼");
-		aaaaaa
 		//設定視窗的名稱
 		this.add(textPanel);
 		backgroundLabel=new JLabel(backgroundImage);
