@@ -15,6 +15,11 @@ public class Main extends JFrame{
 	
 	public Main() {
 		super("今天要做什麼");
+<<<<<<< HEAD
+=======
+		aaaaaa
+		hello mother fucker
+>>>>>>> 576d135b78e357f5b178ac6ed0e20404f1fe9e1f
 		//設定視窗的名稱
 		this.add(textPanel);
 		backgroundLabel=new JLabel(backgroundImage);
