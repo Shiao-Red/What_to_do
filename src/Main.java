@@ -14,6 +14,7 @@ public class Main extends JFrame{
 	//背景圖片放在picture資料夾裡
 	
 	public Main() {
+		bbbb
 		super("今天要做什麼");
 		//設定視窗的名稱
 		this.add(textPanel);
