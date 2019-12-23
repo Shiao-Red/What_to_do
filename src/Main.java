@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import java.awt.BorderLayout;
 
 public class Main extends JFrame{
+	private QuestionPanel firstQPanel=new QuestionPanel();
 	private JPanel imagePanel=null, textPanel=new JPanel();
 	private JLabel backgroundLabel=null;
 	private ImageIcon backgroundImage=new ImageIcon(".\\picture\\spring.jpg");
@@ -16,18 +17,23 @@ public class Main extends JFrame{
 	public Main() {
 		super("今天要做什麼");
 		//設定視窗的名稱
+		firstQPanel.setLocation(0, 0);
+		firstQPanel.setOpaque(false);
+		
 		this.add(textPanel);
 		backgroundLabel=new JLabel(backgroundImage);
 		//讓這個label採用圖片
 		backgroundLabel.setBounds(0, 0, 800, 600);
-		this.getLayeredPane().add(backgroundLabel, Integer.MIN_VALUE);
-		//把backgroundLabel放在JFrame的最底層
 		this.setSize(800, 600);
 		//設定視窗的長跟寛
 		this.setResizable(false);
 		//限定視窗的大小
 		this.setLocation(200, 100);
 		//視窗的出現位置 x y
+		
+		this.add(firstQPanel);
+		this.add(backgroundLabel);
+		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//點選 X 就是離開
 		this.setVisible(true);
