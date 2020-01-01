@@ -21,39 +21,7 @@ public class QuestionPanel extends JPanel {
 	public ActionListener firstAL;
 	public ActionListener secondAL;
 
-	public QuestionPanel(){
-		imgcon=new ImageIcon(".\\picture\\LPCportrait32-2.png");
-		img=imgcon.getImage();
-		img=img.getScaledInstance(275, 350,  java.awt.Image.SCALE_SMOOTH);
-		imgcon=new ImageIcon(img);
-		
-		boyImg=new JLabel(imgcon);
-		boyImg.setLocation(0, 170);
-		boyImg.setSize(275, 380);
-		
-		imgcon=new ImageIcon(".\\picture\\girlLaughtFlip.png");
-		img=imgcon.getImage();
-		img=img.getScaledInstance(275, 350,  java.awt.Image.SCALE_SMOOTH);
-		imgcon=new ImageIcon(img);
-		
-		girlImg=new JLabel(imgcon);
-		girlImg.setLocation(480, 180);
-		girlImg.setSize(350, 380);
-		
-		boyBtn.setForeground(Color.BLUE);
-		boyBtn.setFont(font);
-		boyBtn.setLocation(btnX, btnY);
-		boyBtn.setSize(300, 50);
-		
-		girlBtn.setForeground(Color.BLUE);
-		girlBtn.setFont(font);
-		girlBtn.setLocation(btnX, btnY+150);
-		girlBtn.setSize(300, 50);
-		
-		this.add(boyImg);
-		this.add(girlImg);
-		this.add(boyBtn);
-		this.add(girlBtn);
+
 	public static void setup() {
 		imgcon = new ImageIcon(".\\picture\\LPCportrait32-2.png");
 		img = imgcon.getImage();
@@ -115,24 +83,5 @@ public class QuestionPanel extends JPanel {
 		this.add(secondBtn);
 		this.setLayout(null);
 		this.setSize(800, 600);
-		
-		/*firstAL= new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				thisQPanel.girlImg[0].setVisible(false);
-				thisQPanel.remove(girlImg[0]);
-				secondBtn.removeActionListener(secondAL);
-			}
-		};
-		secondAL=new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				thisQPanel.boyImg[0].setVisible(false);
-				thisQPanel.remove(boyImg[0]);
-				firstBtn.removeActionListener(firstAL);
-			}
-		};
-		
-		firstBtn.addActionListener(firstAL);
-		secondBtn.addActionListener(secondAL);
-		*/
 	}
 }

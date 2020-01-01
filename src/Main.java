@@ -22,7 +22,7 @@ public class Main extends JFrame{
 		super("今天要做什麼");
 		//設定視窗的名稱
 		QuestionPanel.setup();
-		TypeOfFood.setup();
+		//TypeOfFood.setup();
 		
 		typeOfFood=new QuestionPanel();
 		typeOfFood.add(QuestionPanel.boyImg[0]);
