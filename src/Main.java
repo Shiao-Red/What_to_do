@@ -11,7 +11,7 @@ public class Main extends JFrame{
 	private QuestionPanel firstQPanel=new QuestionPanel();
 	private JPanel imagePanel=null, textPanel=new JPanel();
 	private JLabel backgroundLabel=null;
-	private ImageIcon backgroundImage=new ImageIcon(".\\picture\\spring.jpg");
+	private ImageIcon backgroundImage=new ImageIcon(".\\picture\\CLASSROOM.jpg");
 	//背景圖片放在picture資料夾裡
 	
 	public Main() {
@@ -24,7 +24,7 @@ public class Main extends JFrame{
 		backgroundLabel=new JLabel(backgroundImage);
 		//讓這個label採用圖片
 		backgroundLabel.setBounds(0, 0, 800, 600);
-		this.setSize(800, 600);
+		this.setSize(800, 561);
 		//設定視窗的長跟寛
 		this.setResizable(false);
 		//限定視窗的大小

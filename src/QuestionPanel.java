@@ -23,7 +23,7 @@ public class QuestionPanel extends JPanel{
 		imgcon=new ImageIcon(img);
 		
 		boyImg=new JLabel(imgcon);
-		boyImg.setLocation(0, 200);
+		boyImg.setLocation(0, 170);
 		boyImg.setSize(275, 380);
 		
 		imgcon=new ImageIcon(".\\picture\\girlLaughtFlip.png");
@@ -32,7 +32,7 @@ public class QuestionPanel extends JPanel{
 		imgcon=new ImageIcon(img);
 		
 		girlImg=new JLabel(imgcon);
-		girlImg.setLocation(480, 200);
+		girlImg.setLocation(480, 180);
 		girlImg.setSize(350, 380);
 		
 		boyBtn.setForeground(Color.BLUE);
