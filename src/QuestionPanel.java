@@ -12,6 +12,7 @@ public class QuestionPanel extends JPanel {
 	public JButton secondBtn = new JButton();
 	public static JLabel[] boyImg = new JLabel[2], girlImg = new JLabel[2];
 	// [0] ¬O¯ºÁy [1]¬OºÃ´b
+	public JButton yesBtn = new JButton("¬O"), noBtn=new JButton("§_");
 	public JLabel message = new JLabel();
 	private int btnX = 250, btnY = 180;
 	private static Image img;
@@ -65,22 +66,21 @@ public class QuestionPanel extends JPanel {
 		message.setLocation(250, 230);
 		message.setSize(500, 100);
 		message.setFont(msgFont);
-
-		firstBtn.setForeground(Color.BLUE);
-		firstBtn.setFont(btnFont);
-		firstBtn.setLocation(btnX, btnY);
-		firstBtn.setSize(300, 50);
-		//firstBtn.setText(firstStr);
-
-		secondBtn.setForeground(Color.BLUE);
-		secondBtn.setFont(btnFont);
-		secondBtn.setLocation(btnX, btnY + 150);
-		secondBtn.setSize(300, 50);
-		//secondBtn.setText(secondStr);
-
+		
+		this.noBtn.setForeground(Color.BLUE);
+		this.noBtn.setFont(btnFont);
+		this.noBtn.setLocation(btnX, btnY + 150);
+		this.noBtn.setSize(300, 50);
+		
+		this.yesBtn.setForeground(Color.BLUE);
+		this.yesBtn.setFont(btnFont);
+		this.yesBtn.setLocation(btnX, btnY);
+		this.yesBtn.setSize(300, 50);
+		
+		this.add(yesBtn);
+		this.add(noBtn);
+		
 		this.add(message);
-		this.add(firstBtn);
-		this.add(secondBtn);
 		this.setLayout(null);
 		this.setSize(800, 600);
 	}

@@ -1,5 +1,7 @@
 import java.util.*;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,6 +18,7 @@ public class Main extends JFrame{
 		public QuestionTree() {
 			this.root=new Node("要主食嗎?", 0);
 		}
+		
 		public void addNodeAfter(String target, boolean isYes, String questionString) {
 			Node node;
 			node=findNode(target, root);
@@ -26,14 +29,45 @@ public class Main extends JFrame{
 				node.No=new Node(questionString, questionNumber);
 			}
 		}
-		public Node findNode(String target, Node node) {
-			if(node!=null) {
-				questionNumber++;
-				findNode(target, node.Yes);
-				if(node.question.equals(target)) return node;
-				findNode(target, node.No);
+		
+		private Node findNode(String target, Node n) {
+			class Stack{
+				public boolean isWentYes;
+				public boolean isWentNo;
+				public Node node;
 			}
-			return null;
+			
+			int stackIndex=-1;
+			Stack[] nodeStack=new Stack[100];
+			
+			stackIndex++;
+			nodeStack[stackIndex]=new Stack();
+			nodeStack[stackIndex].node=n;
+			nodeStack[stackIndex].isWentYes=false;
+			nodeStack[stackIndex].isWentNo=false;
+			
+			while(stackIndex >= 0) {
+				if(nodeStack[stackIndex].node.question.equals(target)) break;
+				else if(nodeStack[stackIndex].node.Yes != null && nodeStack[stackIndex].isWentYes==false) {
+					nodeStack[stackIndex].isWentYes=true;
+					stackIndex++;
+					nodeStack[stackIndex]=new Stack();
+					nodeStack[stackIndex].node=nodeStack[stackIndex-1].node.Yes;
+					nodeStack[stackIndex].isWentNo=false;
+					nodeStack[stackIndex].isWentYes=false;
+				}
+				else if(nodeStack[stackIndex].node.No != null && nodeStack[stackIndex].isWentNo==false) {
+					nodeStack[stackIndex].isWentNo=true;
+					stackIndex++;
+					nodeStack[stackIndex]=new Stack();
+					nodeStack[stackIndex].node=nodeStack[stackIndex-1].node.No;
+					nodeStack[stackIndex].isWentNo=false;
+					nodeStack[stackIndex].isWentYes=false;
+				}
+				else stackIndex--;
+			}
+		
+			return nodeStack[stackIndex].node;
 		}
 		public void inorder() {
 			recursiveInorder(root);
@@ -46,34 +80,61 @@ public class Main extends JFrame{
 			}
 		}
 		public void setup() {
-			this.addNodeAfter("要主食嗎?", true, "要屁眼嗎?");
+			//root的問題是 : 要主食嗎?
+			//中間傳入的 boolean值，如果是 true 的話，代表加在 Yes 選項後。
+			addNodeAfter("要主食嗎?", false, "要甜點嗎?");
+			addNodeAfter("要甜點嗎?", true, "要喝飲料嗎?");
 		}
 	}
+	
 	private int questionNumber=-1;
 	public boolean isBoy;
+	private QuestionTree tree=new QuestionTree();
 	private Node currentQuestion, previousQuestion;
 	private QuestionPanel typeOfFood=new QuestionPanel();
-	private JPanel imagePanel=null, textPanel=new JPanel();
+	private JPanel textPanel=new JPanel();
 	private JLabel backgroundLabel=null;
 	private ImageIcon backgroundImage=new ImageIcon(".\\picture\\CLASSROOM.jpg");
 	//背景圖片放在picture資料夾裡
 	
-	private ActionListener noBtnActionListener=new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			currentQuestion=currentQuestion.No;
+	private ActionListener noAction=new ActionListener() {
+		public void actionPerformed(ActionEvent e){
+			if(Main.this.currentQuestion.No != null) {
+				Main.this.previousQuestion=Main.this.currentQuestion;
+				Main.this.currentQuestion=Main.this.currentQuestion.No;
+				Main.this.typeOfFood.message.setText(currentQuestion.question);
+				System.out.println("no");
+			}
+			else {
+				Main.this.typeOfFood.message.setText("沒東西了");
+			}
 		}
 	};
-	private ActionListener yesBtnActionListener=new ActionListener() {
+	private ActionListener yesAction=new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			currentQuestion=currentQuestion.Yes;
+			if(Main.this.currentQuestion.Yes != null) {
+				Main.this.previousQuestion=Main.this.currentQuestion;
+				Main.this.currentQuestion=Main.this.currentQuestion.Yes;
+				Main.this.typeOfFood.message.setText(currentQuestion.question);
+				System.out.println("yes");
+			}
+			else {
+				Main.this.typeOfFood.message.setText("沒東西了");
+			}
 		}
 	};
 	
 	public Main() {
 		super("今天要做什麼");
 		//設定視窗的名稱
-		QuestionPanel.setup();
-		//TypeOfFood.setup();
+		typeOfFood.setup();
+		tree.setup();
+		
+		
+		typeOfFood.yesBtn.addActionListener(yesAction);
+		typeOfFood.noBtn.addActionListener(noAction);
+		
+		currentQuestion=tree.root;
 		
 		typeOfFood=new QuestionPanel();
 		typeOfFood.add(QuestionPanel.boyImg[0]);
@@ -94,6 +155,9 @@ public class Main extends JFrame{
 		
 		this.add(typeOfFood);
 		this.add(backgroundLabel);
+		typeOfFood.yesBtn.addActionListener(yesAction);
+		typeOfFood.noBtn.addActionListener(noAction);
+		this.typeOfFood.message.setText(currentQuestion.question);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//點選 X 就是離開
@@ -101,9 +165,6 @@ public class Main extends JFrame{
 	}
 	
 	public static void main(String[] args) {
-		Main.QuestionTree tree=new Main().new QuestionTree();
-		tree.setup();
-		tree.inorder();
 		new Main();
 	}
 		
