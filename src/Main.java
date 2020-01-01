@@ -6,9 +6,13 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.BorderLayout;
+import java.awt.event.*;
 
 public class Main extends JFrame{
-	private QuestionPanel firstQPanel=new QuestionPanel();
+	private boolean isBoy;
+	private int typeOfFoodIndex=-1;
+	private int kindOfFoodIndex=0;
+	private QuestionPanel typeOfFood=new QuestionPanel();
 	private JPanel imagePanel=null, textPanel=new JPanel();
 	private JLabel backgroundLabel=null;
 	private ImageIcon backgroundImage=new ImageIcon(".\\picture\\CLASSROOM.jpg");
@@ -17,8 +21,14 @@ public class Main extends JFrame{
 	public Main() {
 		super("今天要做什麼");
 		//設定視窗的名稱
-		firstQPanel.setLocation(0, 0);
-		firstQPanel.setOpaque(false);
+		QuestionPanel.setup();
+		TypeOfFood.setup();
+		
+		typeOfFood=new QuestionPanel();
+		typeOfFood.add(QuestionPanel.boyImg[0]);
+		typeOfFood.add(QuestionPanel.girlImg[0]);
+		typeOfFood.setLocation(0, 0);
+		typeOfFood.setOpaque(false);
 		
 		this.add(textPanel);
 		backgroundLabel=new JLabel(backgroundImage);
@@ -31,7 +41,7 @@ public class Main extends JFrame{
 		this.setLocation(200, 100);
 		//視窗的出現位置 x y
 		
-		this.add(firstQPanel);
+		this.add(typeOfFood);
 		this.add(backgroundLabel);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
