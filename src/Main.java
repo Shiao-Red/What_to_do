@@ -16,7 +16,7 @@ public class Main extends JFrame{
 		private Node root;
 		
 		public QuestionTree() {
-			this.root=new Node("要主食嗎?", 0);
+			this.root=new Node("要吃飯嗎?", 0);
 		}
 		
 		public void addNodeAfter(String target, boolean isYes, String questionString) {
@@ -24,9 +24,11 @@ public class Main extends JFrame{
 			node=findNode(target, root);
 			if(isYes) {
 				node.Yes=new Node(questionString, questionNumber);
+				System.out.println("加入:"+questionString+"成功");
 			}
 			else {
 				node.No=new Node(questionString, questionNumber);
+				System.out.println("加入:"+questionString+"成功");
 			}
 		}
 		
@@ -82,8 +84,71 @@ public class Main extends JFrame{
 		public void setup() {
 			//root的問題是 : 要主食嗎?
 			//中間傳入的 boolean值，如果是 true 的話，代表加在 Yes 選項後。
-			addNodeAfter("要主食嗎?", false, "要甜點嗎?");
+			//底層品項要用"否"選項來更換
+			addNodeAfter("要吃飯嗎?", true, "要甜點嗎?");
+			addNodeAfter("要吃飯嗎?", false, "戶外活動?");
+			addNodeAfter("戶外活動?", false, "室內運動?");
+			addNodeAfter("戶外活動?", true, "戶外運動?");
 			addNodeAfter("要甜點嗎?", true, "要喝飲料嗎?");
+			addNodeAfter("要甜點嗎?", false, "要熱食嗎?");
+			addNodeAfter("戶外運動?", true, "戶外球類運動?");
+			addNodeAfter("戶外運動?", false, "靜態戶外運動?");
+			addNodeAfter("室內運動?", false, "遊戲類?");
+			addNodeAfter("室內運動?", true, "室內球類運動?");
+			addNodeAfter("要熱食嗎?", false, "要吃小吃嗎?");
+			addNodeAfter("要熱食嗎?", true, "要吃炸物嗎?");
+			addNodeAfter("要喝飲料嗎?", true, "要有料嗎?");
+			addNodeAfter("要喝飲料嗎?", false, "要固體嗎?");
+			addNodeAfter("戶外球類運動?", true, "網球?");
+			addNodeAfter("戶外球類運動?", false, "直排輪?");
+			addNodeAfter("靜態戶外運動?", false, "逛街?");
+			addNodeAfter("靜態戶外運動?", true, "野餐?");
+			addNodeAfter("室內球類運動?", true, "羽球?");
+			addNodeAfter("室內球類運動?", false, "瑜珈?");
+			addNodeAfter("遊戲類?", true, "電子遊戲?");
+			addNodeAfter("遊戲類?", false, "看電影?");
+			addNodeAfter("要吃小吃嗎?", true, "辣脆腸?");
+			addNodeAfter("要吃小吃嗎?", false, "涼麵?");
+			addNodeAfter("要吃炸物嗎?", true, "炸雞?");
+			addNodeAfter("要吃炸物嗎?", false, "串燒?");
+			addNodeAfter("要固體嗎?", true, "蛋糕?");
+			addNodeAfter("要固體嗎?", false, "紅豆湯?");
+			addNodeAfter("要有料嗎?", true, "波霸奶茶?");
+			addNodeAfter("要有料嗎?", false, "紅茶?");	
+			addNodeAfter("野餐?", false, "釣魚?");
+			addNodeAfter("釣魚?", false, "露營?");
+			addNodeAfter("逛街?", false, "遊樂園?");
+			addNodeAfter("遊樂園?", false, "兜風?");
+			addNodeAfter("直排輪?", false, "滑板?");
+			addNodeAfter("滑板?", false, "爬山?");
+			addNodeAfter("網球?", false, "排球?");
+			addNodeAfter("排球?", false, "籃球?");
+			addNodeAfter("電子遊戲?", false, "密室逃脫?");
+			addNodeAfter("密室逃脫?", false, "桌遊?");
+			addNodeAfter("遊戲類?", false, "看電影?");
+			addNodeAfter("看電影?", false, "唱歌?");
+			addNodeAfter("唱歌?", false, "看展覽?");
+			addNodeAfter("羽球?", false, "桌球?");
+			addNodeAfter("桌球?", false, "壁球?");
+			addNodeAfter("瑜珈?", false, "重訓?");
+			addNodeAfter("重訓?", false, "游泳?");
+			addNodeAfter("蛋糕?", false, "舒芙蕾?");
+			addNodeAfter("舒芙蕾?", false, "可麗餅?");
+			addNodeAfter("紅豆湯?", false, "湯圓?");
+			addNodeAfter("湯圓?", false, "芋園?");
+			addNodeAfter("芋園?", false, "豆花?");
+			addNodeAfter("要有料嗎?", true, "波霸奶茶?");
+			addNodeAfter("要有料嗎?", false, "紅茶?");
+			addNodeAfter("紅茶?", false, "牛奶?");
+			addNodeAfter("牛奶?", false, "咖啡?");
+			addNodeAfter("波霸奶茶?", false, "檸檬愛玉?");
+			addNodeAfter("檸檬愛玉?", false, "仙草奶凍?");
+			addNodeAfter("炸雞?", false, "薯條?");
+			addNodeAfter("薯條?", false, "鹹酥雞?");
+			addNodeAfter("串燒?", false, "炭烤?");
+			addNodeAfter("炭烤?", false, "章魚燒?");
+			addNodeAfter("辣脆腸?", false, "鹹水雞?");
+			addNodeAfter("鹹水雞?", false, "滷味?");
 		}
 	}
 	
@@ -103,7 +168,7 @@ public class Main extends JFrame{
 				Main.this.previousQuestion=Main.this.currentQuestion;
 				Main.this.currentQuestion=Main.this.currentQuestion.No;
 				Main.this.typeOfFood.message.setText(currentQuestion.question);
-				System.out.println("no");
+				System.out.println(Main.this.currentQuestion.question);
 			}
 			else {
 				Main.this.typeOfFood.message.setText("沒東西了");
@@ -116,7 +181,7 @@ public class Main extends JFrame{
 				Main.this.previousQuestion=Main.this.currentQuestion;
 				Main.this.currentQuestion=Main.this.currentQuestion.Yes;
 				Main.this.typeOfFood.message.setText(currentQuestion.question);
-				System.out.println("yes");
+				System.out.println(Main.this.currentQuestion.question);
 			}
 			else {
 				Main.this.typeOfFood.message.setText("沒東西了");

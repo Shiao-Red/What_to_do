@@ -63,7 +63,7 @@ public class QuestionPanel extends JPanel {
 	
 	public QuestionPanel() {
 		//message.setText(question);
-		message.setLocation(250, 230);
+		message.setLocation(300, 230);
 		message.setSize(500, 100);
 		message.setFont(msgFont);
 		
