@@ -13,7 +13,7 @@ import java.awt.event.*;
 public class Main extends JFrame{
 	
 	class QuestionTree {
-		private Node root;
+		public Node root;
 		
 		public QuestionTree() {
 			this.root=new Node("要吃飯嗎?", 0);
@@ -24,11 +24,9 @@ public class Main extends JFrame{
 			node=findNode(target, root);
 			if(isYes) {
 				node.Yes=new Node(questionString, questionNumber);
-				System.out.println("加入:"+questionString+"成功");
 			}
 			else {
 				node.No=new Node(questionString, questionNumber);
-				System.out.println("加入:"+questionString+"成功");
 			}
 		}
 		
@@ -171,10 +169,22 @@ public class Main extends JFrame{
 				System.out.println(Main.this.currentQuestion.question);
 			}
 			else {
-				Main.this.typeOfFood.message.setText("沒東西了");
+				Thread t=new Thread() {
+					public void run() {
+						Main.this.currentQuestion=tree.root;
+						try {
+							Thread.sleep(1000);
+						}
+						catch(Exception e) {}
+						Main.this.typeOfFood.message.setText(currentQuestion.question);
+					}
+				};
+				Main.this.typeOfFood.message.setText("你很龜毛哦，重新選擇 ");
+				t.start();
 			}
 		}
 	};
+	
 	private ActionListener yesAction=new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			if(Main.this.currentQuestion.Yes != null) {
@@ -184,7 +194,22 @@ public class Main extends JFrame{
 				System.out.println(Main.this.currentQuestion.question);
 			}
 			else {
-				Main.this.typeOfFood.message.setText("沒東西了");
+				Main.this.typeOfFood.yesBtn.setVisible(false);
+				Main.this.typeOfFood.noBtn.setVisible(false);
+				
+				Thread t=new Thread() {
+					public void run() {
+						String tmp="";
+						int index=0;
+						while(currentQuestion.question.charAt(index) != '?') {
+							tmp+=currentQuestion.question.charAt(index);
+							index++;
+						}
+						Main.this.typeOfFood.message.setText("那就是"+tmp+"啦");
+					}
+				};
+				
+				t.start();
 			}
 		}
 	};
