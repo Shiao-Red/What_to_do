@@ -153,6 +153,7 @@ public class Main extends JFrame{
 		}
 	}
 	
+	private Sound sound;
 	private int questionNumber=-1;
 	public boolean isBoy;
 	private QuestionTree tree=new QuestionTree();
@@ -201,6 +202,7 @@ public class Main extends JFrame{
 				Main.this.typeOfFood.noBtn.setVisible(false);
 				
 				Thread t=new Thread() {
+				//線程
 					public void run() {
 						Desktop d=Desktop.getDesktop();
 						String tmp="";
@@ -227,7 +229,12 @@ public class Main extends JFrame{
 		//設定視窗的名稱
 		typeOfFood.setup();
 		tree.setup();
-		
+		try {
+			sound=new Sound(".\\music\\music.wav");
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 		typeOfFood.yesBtn.addActionListener(yesAction);
 		typeOfFood.noBtn.addActionListener(noAction);
