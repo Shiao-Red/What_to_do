@@ -9,6 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.BorderLayout;
 import java.awt.event.*;
+import java.awt.Desktop;
+import java.net.URI;
+
 
 public class Main extends JFrame{
 	
@@ -199,6 +202,7 @@ public class Main extends JFrame{
 				
 				Thread t=new Thread() {
 					public void run() {
+						Desktop d=Desktop.getDesktop();
 						String tmp="";
 						int index=0;
 						while(currentQuestion.question.charAt(index) != '?') {
@@ -206,6 +210,10 @@ public class Main extends JFrame{
 							index++;
 						}
 						Main.this.typeOfFood.message.setText("那就是"+tmp+"啦");
+						try {
+							d.browse(new URI("https://www.google.com/maps/search/"+tmp));
+						}
+						catch(Exception e) {}
 					}
 				};
 				
